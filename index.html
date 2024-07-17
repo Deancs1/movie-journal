@@ -10,6 +10,23 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMNgiG02EXZ8CXy6cYPFD92f26AXtGIpYENby19"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="dist/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMNgiG02EXZ8CXy6cYPFD92f26AXtGIpYENby19"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         theme: {
@@ -32,6 +49,20 @@
       <header><h2 class="font-roboto">OurFlix</h2></header>
       <h1 class="font-roboto">Popular movies</h1>
       <div id="movies"></div>
+
+      <div class="relative inline-block">
+        <img
+          src="images/_822187b5-44df-418a-8991-ad8537cca012.jpg"
+          alt="Sample Image"
+          class="w-64 h-64 object-cover"
+        />
+        <button
+          class="absolute top-2 right-2 text-white text-2xl bg-gray-800 bg-opacity-50 rounded-full p-2 hover:bg-opacity-75"
+          aria-label="Add to Favorites"
+        >
+          <i class="fas fa-star"></i>
+        </button>
+      </div>
     </main>
     <script src="index.js"></script>
   </body>

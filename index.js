@@ -60,3 +60,10 @@ async function fetchAuthenticatedData() {
 }
 
 fetchAuthenticatedData();
+
+//  fill the heart onClick
+function toggleHeart() {
+  const heartIcon = document.getElementById("heartIcon");
+  heartIcon.classList.toggle("text-white");
+  heartIcon.classList.toggle("text-secondary");
+}
