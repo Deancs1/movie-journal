@@ -4,6 +4,7 @@ const bearerToken =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZjZiMDQ5ZTg2MWNjZGU4MmU5YjE1NDJhMmU5NjE2OSIsIm5iZiI6MTcyMTIxNjUxNy43MzY3NTUsInN1YiI6IjY2OTdhOWM2ZTdhYWMzZjJiMDdhODRiNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fTpKTeLFa8VCzqwHVDieNfZlSlWLIqY9zy6MU5mL1-Y";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/w200";
+//const url = "https://api.themoviedb.org/3/authentication";
 
 async function fetchAuthenticatedData(numMovies, targetElementId) {
   const url = `${baseUrl}/movie/popular`;
@@ -16,20 +17,31 @@ async function fetchAuthenticatedData(numMovies, targetElementId) {
     },
   };
 
-  try {
-    const response = await fetch(url, options);
+  //const movieDiv = document.getElementById("movies");
 
-    if (!response.ok) {
-      throw new Error(`An error occurred: ${response.status}`);
+  try {
+    const responce = await fetch(url, options);
+
+    if (!responce.ok) {
+      throw new Error(`an error occurred: ${responce.status}`);
     }
 
-    const data = await response.json();
+    const data = await responce.json();
 
     // Select the target element by ID
     const targetElement = document.getElementById(targetElementId);
 
-    // Clear existing content
-    targetElement.innerHTML = "";
+    // Select all elements that match the target class
+    // const movieDivs = document.querySelectorAll(`.${targetClass}`);
+
+    // movieDivs.forEach((movieDiv) => {
+    // clear movie div
+    movieDiv.innerHTML = "";
+    /*
+    // Iterate over the movies and create a movie card for each one
+    data.results.forEach((movie) => {
+      const movieCard = document.createElement("div");
+      */
 
     // Iterate over the movies and create movie cards based on numMovies parameter
     for (let i = 0; i < Math.min(data.results.length, numMovies); i++) {
@@ -62,22 +74,78 @@ async function fetchAuthenticatedData(numMovies, targetElementId) {
             </div>
           `;
 
-      // Append the movie card to the target element
-      targetElement.appendChild(movieCard);
+      movieDiv.appendChild(movieCard);
     }
   } catch (error) {
     console.error("Error fetching data: ", error);
-    // Handle error scenario, if needed
+    // movieDiv.textContent = "Failed to load data";
   }
 }
 
-// Fetch popular movies and top rated movies
 fetchAuthenticatedData(8, "movies");
 fetchAuthenticatedData(4, "topRatedMovies");
 
-// Function to toggle heart icon
+// Fill the heart on click
 function toggleHeart(button) {
   const heartIcon = button.querySelector(".heart-icon");
   heartIcon.classList.toggle("text-white");
   heartIcon.classList.toggle("text-secondary");
 }
+/*    working for 1 card
+    //take only first element for testing
+
+    const firstMovie = data.results[0];
+
+    // populate existing card with data
+
+    const movieImage = document.getElementById("movieImage");
+    movieImage.src = `${imageBaseUrl}${firstMovie.poster_path}`;
+    movieImage.alt = firstMovie.title;
+
+    const movieTitle = document.getElementById("movieTitle");
+    movieTitle.textContent = firstMovie.title;
+
+    const movieOverview = document.getElementById("movieOverview");
+    movieOverview.textContent = firstMovie.overview;
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+
+    movieDiv.textContent = "Failed to load data";
+  }
+}
+
+fetchAuthenticatedData();
+*/
+
+/* shows all popular movies with no styling
+
+    // iterate over the movies and create HTML element for each movie
+
+    data.results.forEach((movie) => {
+      const movieElement = document.createElement("div");
+      movieElement.classList.add("movie");
+
+      const title = document.createElement("h2");
+      title.textContent = movie.title;
+
+      const overview = document.createElement("p");
+      overview.textContent = movie.overview;
+
+      const image = document.createElement("img");
+      image.src = `${imageBaseUrl}${movie.poster_path}`;
+      image.alt = movie.title;
+
+      movieElement.appendChild(title);
+      movieElement.appendChild(overview);
+      movieElement.appendChild(image);
+
+      movieDiv.appendChild(movieElement);
+    });
+  } catch (error) {
+    console.error("error fetching data: ", error);
+    movieDiv.textContent = "failed to load movies. ";
+  }
+}
+
+fetchAuthenticatedData();
+*/
